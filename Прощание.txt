@@ -1,2 +1,1 @@
 print("goodbye my only lover")
-print("I'll never forget you and our summer")
