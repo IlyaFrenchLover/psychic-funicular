@@ -1,5 +1,6 @@
 #include "HelloWorldScene.h"
 #include "RSprite.h"
+#include <random>
 #include <vector>
 #include <iostream>
 #include <algorithm>
@@ -52,47 +53,21 @@ void printVector(std::vector<T> MyVector) {
 	}
 }*/
 
-void InitOfMyVector(std::vector<String> MyVector, std::string s[]) {
+void InitOfMyVector(std::vector<std:: string> MyVector, std::string s[]) {
 	if (MyVector.size() == sizeof(s))
 	{
 		int m = sizeof(s);
 		for (int i = 0; i < m; i++)
 		{
 			MyVector[i] = s[i];
-			srand(0);
-			std::random_shuffle(MyVector.begin(), MyVector.end());
-			std::cout << std::endl;
+			//srand(0);
+			//std::random_shuffle(MyVector.begin(), MyVector.end());
+			//std::cout << std::endl;
 			//s[i] = MyVector[i];
 			//std::cout << MyVector.at(i) << std::endl;
 		}
 	}
 }
-
-void InitOfMyBackGround(std::vector<String> BackGround, std::string s2[]) {
-	if (BackGround.size() == sizeof(s2))
-	{
-		int m = sizeof(s2);
-		for (int i = 0; i < m; i++)
-		{
-			BackGround[i] = s2[i];
-			srand(0);
-			std::random_shuffle(BackGround.begin(), BackGround.end());
-			std::cout << std::endl;
-			//s[i] = MyVector[i];
-			//std::cout << MyVector.at(i) << std::endl;
-		}
-	}
-}
-
-void SecondInitOfString(std::vector<String> MyVector, std::string s[]) {
-	for (int i = 0; i < sizeof(s); i++)
-	{
-
-		//std::random_shuffle(MyVector.begin(), MyVector.end());
-		//std::cout << MyVector.at(i) << std::endl;
-	}
-}
-
 
 // on "init" you need to initialize your instance
 bool HelloWorld::init()
@@ -174,8 +149,8 @@ bool HelloWorld::init()
 		}
 	}*/
 	
-	std::vector<String> MyVector(6);
-	std::vector<String> BackGround(2);
+	std::vector<std:: string> MyVector(6);
+	//std::vector<std:: string> BackGround(2);
 	//InitOfMyVector(MyVector, s);
 	
 	int n = 0;
@@ -187,11 +162,9 @@ bool HelloWorld::init()
 			int k = i / 6;
 			//int n = rand() % 6;
 			//printVector(MyVector);
-			//InitOfMyVector(MyVector, s);
-			//std::random_shuffle(MyVector.begin(), MyVector.end());
-			//std::cout << std::endl;
 			InitOfMyVector(MyVector, s);
-			RSprite* card1 = RSprite::create(s[i], s2[1]);
+			std::random_shuffle(MyVector.begin(), MyVector.end());//располагает элементы вектора в рандомном порядке
+			RSprite* card1 = RSprite::create(MyVector[i], s2[1]);
 			Point position1 = Point((n + k + 0.5) * visibleSize.width / 6, (j + 0.5) * visibleSize.height / 6);
 			card1->setPosition(position1);
 			card1->setListener(this);
