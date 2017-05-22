@@ -76,8 +76,9 @@ void RSprite::registerListener()
 	};
 
 	// Триггер перемещения
-	listener->onTouchMoved = [=](Touch* touch, Event* event)
+	listener->onTouchMoved = [](Touch* touch, Event* event)
 	{
+		
 		//	 ваша логика
 	};
 

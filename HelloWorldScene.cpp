@@ -53,20 +53,17 @@ void printVector(std::vector<T> MyVector) {
 	}
 }*/
 
-void InitOfMyVector(std::vector<std:: string> MyVector, std::string s[]) {
-	if (MyVector.size() == sizeof(s))
-	{
-		int m = sizeof(s);
-		for (int i = 0; i < m; i++)
+void InitOfMyVector(std::vector<std:: string>& MyVector, std::string s[]) {
+	//int num_elems = sizeof(s) / sizeof(std::string);
+	//if (MyVector.size() == num_elems)
+	//{
+		//int m = sizeof(s);
+		for (int i = 0; i < MyVector.size(); i++)
 		{
 			MyVector[i] = s[i];
-			//srand(0);
-			//std::random_shuffle(MyVector.begin(), MyVector.end());
-			//std::cout << std::endl;
-			//s[i] = MyVector[i];
-			//std::cout << MyVector.at(i) << std::endl;
+		
 		}
-	}
+	//}
 }
 
 // on "init" you need to initialize your instance
@@ -152,25 +149,28 @@ bool HelloWorld::init()
 	std::vector<std:: string> MyVector(6);
 	//std::vector<std:: string> BackGround(2);
 	//InitOfMyVector(MyVector, s);
+
 	
 	int n = 0;
 	while (n < 6)
+	
 	{
+		InitOfMyVector(MyVector, s);
+		std::random_shuffle(MyVector.begin(), MyVector.end());//располагает элементы вектора в рандомном порядке
 		for (int i = 0; i < 6; i++)
 		{
 			int j = i % 6;
 			int k = i / 6;
 			//int n = rand() % 6;
 			//printVector(MyVector);
-			InitOfMyVector(MyVector, s);
-			std::random_shuffle(MyVector.begin(), MyVector.end());//располагает элементы вектора в рандомном порядке
+
 			RSprite* card1 = RSprite::create(MyVector[i], s2[1]);
 			Point position1 = Point((n + k + 0.5) * visibleSize.width / 6, (j + 0.5) * visibleSize.height / 6);
 			card1->setPosition(position1);
 			card1->setListener(this);
 			//card1->setVisible(false);
 
-			this->addChild(card1, 0, i);
+			this->addChild(card1,0,i);
 		}
 		n++;
 	}
